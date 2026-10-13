@@ -45,13 +45,14 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-PRIMARY_COLOR = "#6366F1"
-ACCENT_COLOR = "#4F46E5"
+PRIMARY_COLOR = "#4F46E5"
+ACCENT_COLOR = "#4338CA"
 PALETTE = ["#4F46E5", "#06B6D4", "#10B981", "#F59E0B", "#F43F5E", "#8B5CF6"]
+CONTINUOUS_PALETTE = ["#6366F1", "#312E81"]
 
 CUSTOM_CSS = """
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 html, body, [data-testid="stAppViewContainer"], .main {
   background-color: #F8FAFC !important;
@@ -59,48 +60,53 @@ html, body, [data-testid="stAppViewContainer"], .main {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
+/* Force dark, crisp readable text globally across Streamlit elements */
+p, span, label, div, li {
+  color: #0F172A;
+}
+
 [data-testid="stHeader"] {
   background-color: #FFFFFF !important;
-  border-bottom: 1px solid #E2E8F0 !important;
+  border-bottom: 1.5px solid #CBD5E1 !important;
 }
 
 [data-testid="stSidebar"] {
   background-color: #FFFFFF !important;
-  border-right: 1px solid #E2E8F0 !important;
+  border-right: 1.5px solid #CBD5E1 !important;
 }
 
-/* Card container style */
+/* Card container style with crisp borders and clean elevation */
 .card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 12px;
-  padding: 20px;
-  margin-bottom: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 16px !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05) !important;
 }
 
 .pill-badge {
-  display: inline-flex;
-  align-items: center;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 9999px;
-  letter-spacing: 0.02em;
+  display: inline-flex !important;
+  align-items: center !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 4px 10px !important;
+  border-radius: 9999px !important;
+  letter-spacing: 0.02em !important;
 }
 
 /* Sidebar navigation item overrides */
 [data-testid="stSidebar"] .stRadio > div {
-  gap: 4px !important;
+  gap: 5px !important;
 }
 
 [data-testid="stSidebar"] .stRadio label {
-  padding: 7px 12px !important;
+  padding: 8px 12px !important;
   border-radius: 8px !important;
   border: 1px solid transparent !important;
-  color: #475569 !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
+  color: #1E293B !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
   transition: all 0.15s ease !important;
   cursor: pointer !important;
 }
@@ -112,21 +118,135 @@ html, body, [data-testid="stAppViewContainer"], .main {
 
 [data-testid="stSidebar"] .stRadio label:has(input:checked) {
   background-color: #EEF2FF !important;
-  border: 1px solid #C7D2FE !important;
-  color: #4F46E5 !important;
-  font-weight: 600 !important;
+  border: 1.5px solid #818CF8 !important;
+  color: #3730A3 !important;
+  font-weight: 750 !important;
 }
 
 /* Streamlit container border override to match cards */
 [data-testid="stVerticalBlockBorderWrapper"] {
   border-radius: 12px !important;
-  border-color: #E2E8F0 !important;
+  border: 1.5px solid #CBD5E1 !important;
   background-color: #FFFFFF !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Main page inputs & radio labels */
+[data-testid="stWidgetLabel"] p,
+[data-testid="stWidgetLabel"] label,
+[data-testid="stWidgetLabel"] span {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+}
+
+div[role="radiogroup"] label {
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  color: #1E293B !important;
+}
+
+div[data-baseweb="select"] {
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 8px !important;
+}
+
+div[data-baseweb="select"] * {
+  font-size: 13.5px !important;
+  color: #0F172A !important;
+  font-weight: 600 !important;
 }
 
 /* Sliders */
 [data-testid="stSlider"] [role="slider"] {
   background-color: #4F46E5 !important;
+}
+
+/* Tabs */
+[data-testid="stTabs"] button[role="tab"] {
+  font-size: 14px !important;
+  font-weight: 650 !important;
+  color: #334155 !important;
+  padding: 8px 16px !important;
+}
+
+[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+  color: #3730A3 !important;
+  font-weight: 800 !important;
+  border-bottom: 2.5px solid #4F46E5 !important;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: #0F172A !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* Dataframes and tables */
+[data-testid="stDataFrame"] {
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 8px !important;
+}
+
+/* Plotly Graph Container & Typography Overrides */
+.stPlotlyChart {
+  background: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Force crystal-clear high contrast for all Plotly text labels */
+.js-plotly-plot .plotly text,
+.js-plotly-plot .plotly .xtitle,
+.js-plotly-plot .plotly .ytitle,
+.js-plotly-plot .plotly .ztitle,
+.js-plotly-plot .plotly .g-xtitle text,
+.js-plotly-plot .plotly .g-ytitle text,
+.js-plotly-plot .plotly .g-ztitle text,
+.js-plotly-plot .plotly .xtitle text,
+.js-plotly-plot .plotly .ytitle text,
+.js-plotly-plot .plotly .ztitle text,
+.js-plotly-plot .plotly .cbtitle text,
+.js-plotly-plot .plotly .legendtext text,
+.js-plotly-plot .plotly text.xtick,
+.js-plotly-plot .plotly text.ytick,
+.js-plotly-plot .plotly .xtick text,
+.js-plotly-plot .plotly .ytick text,
+.js-plotly-plot .plotly .cbaxis text,
+.js-plotly-plot .plotly .legend text {
+  fill: #0F172A !important;
+  color: #0F172A !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.js-plotly-plot .plotly .g-xtitle text,
+.js-plotly-plot .plotly .g-ytitle text,
+.js-plotly-plot .plotly .xtitle text,
+.js-plotly-plot .plotly .ytitle text,
+.js-plotly-plot .plotly .cbtitle text {
+  font-weight: 750 !important;
+  font-size: 13.5px !important;
+}
+
+.js-plotly-plot .plotly .xtick text,
+.js-plotly-plot .plotly .ytick text,
+.js-plotly-plot .plotly .cbaxis text {
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+.js-plotly-plot .plotly .xline,
+.js-plotly-plot .plotly .yline {
+  stroke: #475569 !important;
+  stroke-width: 1.5px !important;
+}
+
+.js-plotly-plot .plotly .xgrid,
+.js-plotly-plot .plotly .ygrid {
+  stroke: #E2E8F0 !important;
 }
 </style>
 """
@@ -184,34 +304,149 @@ df = load_and_prepare_data()
 
 def apply_chart_theme(fig, height: int = 320, show_legend: bool = True):
     """
-    Applies unified white-card styling and custom color scheme to Plotly figures.
+    Applies unified white-card styling with high-contrast, crystal-clear labels and axes to Plotly figures.
     """
+    # 1. Root layout configuration
     fig.update_layout(
         template="plotly_white",
         height=height,
-        margin=dict(t=35, b=25, l=25, r=25),
-        font=dict(family="Inter, sans-serif", color="#334155", size=12),
+        margin=dict(t=40, b=45, l=55, r=30),
+        font=dict(family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", color="#0F172A", size=13),
+        title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=15, weight="bold")),
         showlegend=show_legend,
-        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1) if show_legend else {},
-        plot_bgcolor="rgba(255,255,255,0)",
-        paper_bgcolor="rgba(255,255,255,0)",
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+            font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+            title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"))
+        ) if show_legend else {},
+        plot_bgcolor="#FFFFFF",
+        paper_bgcolor="#FFFFFF",
+        coloraxis_colorbar=dict(
+            title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=13, weight="bold")),
+            tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+            outlinecolor="#64748B",
+            outlinewidth=1.2
+        ),
+        hoverlabel=dict(
+            bgcolor="#0F172A",
+            font=dict(family="Inter, sans-serif", color="#FFFFFF", size=12)
+        )
     )
+
+    # 2. High-contrast 2D X and Y axes
+    fig.update_xaxes(
+        showline=True,
+        linecolor="#475569",
+        linewidth=1.5,
+        showgrid=True,
+        gridcolor="#E2E8F0",
+        gridwidth=1,
+        zeroline=True,
+        zerolinecolor="#94A3B8",
+        zerolinewidth=1.5,
+        ticks="outside",
+        tickcolor="#475569",
+        ticklen=5,
+        tickwidth=1.5,
+        tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+        title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=13, weight="bold"), standoff=12)
+    )
+
+    fig.update_yaxes(
+        showline=True,
+        linecolor="#475569",
+        linewidth=1.5,
+        showgrid=True,
+        gridcolor="#E2E8F0",
+        gridwidth=1,
+        zeroline=True,
+        zerolinecolor="#94A3B8",
+        zerolinewidth=1.5,
+        ticks="outside",
+        tickcolor="#475569",
+        ticklen=5,
+        tickwidth=1.5,
+        tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+        title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=13, weight="bold"), standoff=12)
+    )
+
+    # 3. 3D Scene axes if present
+    if hasattr(fig.layout, "scene") and fig.layout.scene:
+        fig.update_scenes(
+            xaxis=dict(
+                backgroundcolor="#FFFFFF",
+                gridcolor="#CBD5E1",
+                linecolor="#475569",
+                linewidth=2,
+                showbackground=True,
+                tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=11, weight="bold"),
+                title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"))
+            ),
+            yaxis=dict(
+                backgroundcolor="#FFFFFF",
+                gridcolor="#CBD5E1",
+                linecolor="#475569",
+                linewidth=2,
+                showbackground=True,
+                tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=11, weight="bold"),
+                title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"))
+            ),
+            zaxis=dict(
+                backgroundcolor="#FFFFFF",
+                gridcolor="#CBD5E1",
+                linecolor="#475569",
+                linewidth=2,
+                showbackground=True,
+                tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=11, weight="bold"),
+                title=dict(font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"))
+            )
+        )
+
+    # 4. Crisp boundary outlines for bar charts
+    fig.update_traces(
+        selector=dict(type="bar"),
+        marker_line_color="#312E81",
+        marker_line_width=0.8
+    )
+
     return fig
+
+# Monkey-patch st.plotly_chart so theme=None prevents Streamlit from washing out labels
+_orig_plotly_chart = st.plotly_chart
+
+def safe_plotly_chart(figure_or_data, *args, **kwargs):
+    """
+    Wraps st.plotly_chart to ensure high-contrast theme and prevents Streamlit
+    from washing out labels with theme='streamlit'.
+    """
+    if "theme" not in kwargs:
+        kwargs["theme"] = None
+    if "use_container_width" not in kwargs and "width" not in kwargs:
+        kwargs["use_container_width"] = True
+    if hasattr(figure_or_data, "update_layout"):
+        apply_chart_theme(figure_or_data)
+    return _orig_plotly_chart(figure_or_data, *args, **kwargs)
+
+st.plotly_chart = safe_plotly_chart
 
 def render_top_header(active_module: str):
     """
-    Renders top breadcrumbs and system status pill badges.
+    Renders top breadcrumbs and system status pill badges with crisp text.
     """
     html = f"""
-    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0 16px 0; border-bottom: 1px solid #E2E8F0; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px;">
-        <span style="color: #64748B; font-weight: 500;">E-Commerce Analytics Platform</span>
-        <span style="color: #CBD5E1;">/</span>
-        <span style="color: #0F172A; font-weight: 600;">{active_module}</span>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0 16px 0; border-bottom: 1.5px solid #CBD5E1; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 14px;">
+        <span style="color: #334155; font-weight: 600;">E-Commerce Analytics Platform</span>
+        <span style="color: #94A3B8; font-weight: 700;">/</span>
+        <span style="color: #0F172A; font-weight: 800;">{active_module}</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 8px;">
-        <span class="pill-badge" style="background: #F1F5F9; color: #334155; border: 1px solid #E2E8F0;">Dataset: 10,000 Records</span>
-        <span class="pill-badge" style="background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0;">Mode: In-Memory OLAP</span>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span class="pill-badge" style="background: #F1F5F9; color: #0F172A; border: 1.5px solid #CBD5E1;">Dataset: 10,000 Records</span>
+        <span class="pill-badge" style="background: #ECFDF5; color: #047857; border: 1.5px solid #6EE7B7;">Mode: In-Memory OLAP</span>
       </div>
     </div>
     """
@@ -219,31 +454,31 @@ def render_top_header(active_module: str):
 
 def render_module_header(tag: str, title: str, subtitle: str, theme_tag: str = "Core DWDM"):
     """
-    Uniform Module Header Card.
+    Uniform Module Header Card with high contrast.
     """
     html = f"""
     <div class="card">
       <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
-        <span class="pill-badge" style="background: #EEF2FF; color: #4F46E5; border: 1px solid #C7D2FE;">{tag}</span>
-        <span class="pill-badge" style="background: #F8FAFC; color: #64748B; border: 1px solid #E2E8F0;">{theme_tag}</span>
+        <span class="pill-badge" style="background: #EEF2FF; color: #3730A3; border: 1.5px solid #A5B4FC;">{tag}</span>
+        <span class="pill-badge" style="background: #F1F5F9; color: #334155; border: 1.5px solid #CBD5E1;">{theme_tag}</span>
       </div>
-      <h2 style="margin: 0; font-size: 22px; font-weight: 700; color: #0F172A; letter-spacing: -0.02em;">{title}</h2>
-      <p style="margin: 4px 0 0 0; font-size: 13px; color: #64748B;">{subtitle}</p>
+      <h2 style="margin: 0; font-size: 23px; font-weight: 800; color: #0F172A; letter-spacing: -0.02em;">{title}</h2>
+      <p style="margin: 6px 0 0 0; font-size: 14px; color: #334155; font-weight: 500;">{subtitle}</p>
     </div>
     """
     render_html(html)
 
 def render_problem_card(title: str, business_problem: str, operational_impact: str):
     """
-    Uniform Problem Statement Card.
+    Uniform Problem Statement Card with high contrast.
     """
     html = f"""
-    <div class="card" style="border-left: 4px solid #4F46E5;">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #4F46E5; margin-bottom: 4px;">Operational Problem Statement</div>
-      <h4 style="margin: 0 0 6px 0; font-size: 16px; font-weight: 600; color: #0F172A;">{title}</h4>
-      <p style="margin: 0 0 10px 0; font-size: 13px; color: #334155; line-height: 1.5;">{business_problem}</p>
-      <div style="padding: 10px 14px; background: #F8FAFC; border-radius: 8px; border: 1px solid #E2E8F0; font-size: 12px; color: #475569;">
-        <strong style="color: #0F172A;">Identified Bottleneck:</strong> {operational_impact}
+    <div class="card" style="border-left: 5px solid #4F46E5;">
+      <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #4338CA; margin-bottom: 6px;">Operational Problem Statement</div>
+      <h4 style="margin: 0 0 8px 0; font-size: 17px; font-weight: 750; color: #0F172A;">{title}</h4>
+      <p style="margin: 0 0 12px 0; font-size: 14px; color: #1E293B; line-height: 1.6; font-weight: 450;">{business_problem}</p>
+      <div style="padding: 12px 16px; background: #FEF2F2; border-radius: 8px; border: 1.5px solid #FECACA; border-left: 4px solid #DC2626; font-size: 13.5px; color: #0F172A;">
+        <strong style="color: #991B1B; font-weight: 750;">Identified Bottleneck:</strong> <span style="color: #1E293B; font-weight: 500;">{operational_impact}</span>
       </div>
     </div>
     """
@@ -251,13 +486,13 @@ def render_problem_card(title: str, business_problem: str, operational_impact: s
 
 def render_takeaways_card(takeaways: list):
     """
-    Uniform Business Takeaway Card.
+    Uniform Business Takeaway Card with high contrast.
     """
-    bullets = "".join([f"<li style='margin-bottom: 6px;'>{t}</li>" for t in takeaways])
+    bullets = "".join([f"<li style='margin-bottom: 8px; font-weight: 500; color: #0F172A;'>{t}</li>" for t in takeaways])
     html = f"""
-    <div class="card" style="border-left: 4px solid #10B981; margin-top: 16px;">
-      <div style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #059669; margin-bottom: 4px;">Operational Takeaways & Recommendations</div>
-      <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #334155; line-height: 1.55;">
+    <div class="card" style="border-left: 5px solid #059669; margin-top: 16px;">
+      <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #047857; margin-bottom: 6px;">Operational Takeaways & Recommendations</div>
+      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.6;">
         {bullets}
       </ul>
     </div>
@@ -266,13 +501,13 @@ def render_takeaways_card(takeaways: list):
 
 def render_metric_card(label: str, value: str, subtext: str = ""):
     """
-    Renders styled stat card matching SaaS theme.
+    Renders styled stat card matching SaaS theme with high-contrast typography.
     """
-    sub_html = f"<div style='font-size: 11px; color: #64748B; margin-top: 2px;'>{subtext}</div>" if subtext else ""
+    sub_html = f"<div style='font-size: 12px; color: #475569; margin-top: 4px; font-weight: 500;'>{subtext}</div>" if subtext else ""
     html = f"""
-    <div class="card" style="padding: 16px; margin-bottom: 12px;">
-      <div style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748B;">{label}</div>
-      <div style="font-size: 24px; font-weight: 700; color: #0F172A; margin-top: 4px; letter-spacing: -0.02em;">{value}</div>
+    <div class="card" style="padding: 18px; margin-bottom: 12px;">
+      <div style="font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: 0.05em; color: #334155;">{label}</div>
+      <div style="font-size: 26px; font-weight: 800; color: #0F172A; margin-top: 4px; letter-spacing: -0.02em;">{value}</div>
       {sub_html}
     </div>
     """
@@ -517,7 +752,7 @@ if selected_page == "Dashboard Overview":
                 x="country",
                 y="Orders",
                 color="Revenue",
-                color_continuous_scale=["#C7D2FE", "#4F46E5"],
+                color_continuous_scale=CONTINUOUS_PALETTE,
                 labels={"country": "Market", "Orders": "Order Volume"}
             )
             st.plotly_chart(apply_chart_theme(fig_cntry, height=260), use_container_width=True)
@@ -1628,13 +1863,29 @@ CREATE TABLE fact_customer_reviews (
             fig_cross.update_layout(
                 template="plotly_white",
                 height=300,
-                margin=dict(t=35, b=25, l=25, r=25),
-                font=dict(family="Inter, sans-serif", color="#334155", size=12),
-                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
-                yaxis=dict(title=dict(text="Gross Revenue ($)", font=dict(color="#4F46E5")), side="left"),
-                yaxis2=dict(title=dict(text="Avg Customer Rating (1-5 ★)", font=dict(color="#10B981")), overlaying="y", side="right", range=[1, 5]),
-                plot_bgcolor="rgba(255,255,255,0)",
-                paper_bgcolor="rgba(255,255,255,0)",
+                margin=dict(t=40, b=45, l=55, r=55),
+                font=dict(family="Inter, -apple-system, sans-serif", color="#0F172A", size=13),
+                legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1, font=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold")),
+                xaxis=dict(
+                    title=dict(text=dim_label, font=dict(family="Inter, sans-serif", color="#0F172A", size=13, weight="bold")),
+                    tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+                    showline=True, linecolor="#475569", linewidth=1.5,
+                    showgrid=True, gridcolor="#E2E8F0"
+                ),
+                yaxis=dict(
+                    title=dict(text="Gross Revenue ($)", font=dict(family="Inter, sans-serif", color="#4F46E5", size=13, weight="bold")),
+                    tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+                    showline=True, linecolor="#475569", linewidth=1.5,
+                    showgrid=True, gridcolor="#E2E8F0", side="left"
+                ),
+                yaxis2=dict(
+                    title=dict(text="Avg Customer Rating (1-5 ★)", font=dict(family="Inter, sans-serif", color="#059669", size=13, weight="bold")),
+                    tickfont=dict(family="Inter, sans-serif", color="#0F172A", size=12, weight="bold"),
+                    showline=True, linecolor="#059669", linewidth=1.5,
+                    overlaying="y", side="right", range=[1, 5]
+                ),
+                plot_bgcolor="#FFFFFF",
+                paper_bgcolor="#FFFFFF",
             )
             st.plotly_chart(fig_cross, use_container_width=True)
             st.dataframe(cross_mart_df.style.format({"Gross_Revenue": "${:,.2f}", "Order_Volume": "{:,}", "Average_Rating": "{:.2f}"}), use_container_width=True)
@@ -1738,7 +1989,7 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
             x=x_col,
             y="Gross_Revenue",
             color="Gross_Revenue",
-            color_continuous_scale=["#C7D2FE", "#4F46E5"],
+            color_continuous_scale=CONTINUOUS_PALETTE,
             labels={x_col: "Time Dimension", "Gross_Revenue": "Gross Revenue ($)"}
         )
         st.plotly_chart(apply_chart_theme(fig_roll, height=280), use_container_width=True)
@@ -1763,7 +2014,7 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
             y="product_name",
             orientation="h",
             color="Revenue",
-            color_continuous_scale=["#C7D2FE", "#4F46E5"],
+            color_continuous_scale=CONTINUOUS_PALETTE,
             labels={"Revenue": "SKU Revenue ($)", "product_name": "Product Name"}
         )
         st.plotly_chart(apply_chart_theme(fig_drill, height=280, show_legend=False), use_container_width=True)
@@ -1775,7 +2026,7 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
         col_sk1, col_sk2 = st.columns(2)
         with col_sk1:
             sku_cntry = sku_subset.groupby("country")["total_amount"].sum().reset_index().sort_values("total_amount", ascending=False)
-            fig_sk_cntry = px.bar(sku_cntry, x="country", y="total_amount", color="total_amount", color_continuous_scale=["#C7D2FE", "#4F46E5"], labels={"country": "Market", "total_amount": "Revenue ($)"})
+            fig_sk_cntry = px.bar(sku_cntry, x="country", y="total_amount", color="total_amount", color_continuous_scale=CONTINUOUS_PALETTE, labels={"country": "Market", "total_amount": "Revenue ($)"})
             st.plotly_chart(apply_chart_theme(fig_sk_cntry, height=230, show_legend=False), use_container_width=True)
         with col_sk2:
             sku_pay = sku_subset.groupby("payment_method")["total_amount"].sum().reset_index()
@@ -1897,7 +2148,7 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
             p_matrix,
             text_auto=True,
             aspect="auto",
-            color_continuous_scale=["#FFFFFF", "#EEF2FF", "#4F46E5"],
+            color_continuous_scale=["#EEF2FF", "#818CF8", "#312E81"],
             labels=dict(x=piv_col.capitalize(), y=piv_row.capitalize(), color=piv_metric)
         )
         st.plotly_chart(apply_chart_theme(fig_piv, height=320), use_container_width=True)
@@ -1978,7 +2229,8 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
                     colorscale=cube_color_theme,
                     opacity=0.88,
                     colorbar=dict(
-                        title=dict(text=cube_metric, font=dict(family="Inter", size=11, color="#334155")),
+                        title=dict(text=cube_metric, font=dict(family="Inter, sans-serif", size=13, color="#0F172A", weight="bold")),
+                        tickfont=dict(family="Inter, sans-serif", size=11, color="#0F172A", weight="bold"),
                         thickness=14,
                         len=0.7,
                         x=1.02
@@ -2008,34 +2260,40 @@ elif selected_page == "02 — Multidimensional OLAP Engine":
         fig_cube.update_layout(
             scene=dict(
                 xaxis=dict(
-                    title=dict(text="Product Category", font=dict(family="Inter", size=11, color="#334155")),
+                    title=dict(text="Product Category", font=dict(family="Inter, sans-serif", size=13, color="#0F172A", weight="bold")),
                     tickvals=list(range(len(cats))),
                     ticktext=cats,
-                    backgroundcolor="#F8FAFC",
-                    gridcolor="#E2E8F0",
+                    tickfont=dict(family="Inter, sans-serif", size=11, color="#0F172A", weight="bold"),
+                    backgroundcolor="#FFFFFF",
+                    gridcolor="#CBD5E1",
+                    linecolor="#475569",
                     showbackground=True,
                 ),
                 yaxis=dict(
-                    title=dict(text="Sovereign Market", font=dict(family="Inter", size=11, color="#334155")),
+                    title=dict(text="Sovereign Market", font=dict(family="Inter, sans-serif", size=13, color="#0F172A", weight="bold")),
                     tickvals=list(range(len(cnts))),
                     ticktext=cnts,
-                    backgroundcolor="#F8FAFC",
-                    gridcolor="#E2E8F0",
+                    tickfont=dict(family="Inter, sans-serif", size=11, color="#0F172A", weight="bold"),
+                    backgroundcolor="#FFFFFF",
+                    gridcolor="#CBD5E1",
+                    linecolor="#475569",
                     showbackground=True,
                 ),
                 zaxis=dict(
-                    title=dict(text="Fiscal Quarter", font=dict(family="Inter", size=11, color="#334155")),
+                    title=dict(text="Fiscal Quarter", font=dict(family="Inter, sans-serif", size=13, color="#0F172A", weight="bold")),
                     tickvals=list(range(len(qtrs))),
                     ticktext=qtrs,
-                    backgroundcolor="#F8FAFC",
-                    gridcolor="#E2E8F0",
+                    tickfont=dict(family="Inter, sans-serif", size=11, color="#0F172A", weight="bold"),
+                    backgroundcolor="#FFFFFF",
+                    gridcolor="#CBD5E1",
+                    linecolor="#475569",
                     showbackground=True,
                 ),
                 camera=dict(eye=dict(x=1.65, y=1.65, z=1.35))
             ),
             margin=dict(l=10, r=10, b=10, t=20),
             height=460,
-            paper_bgcolor="rgba(255,255,255,0)",
+            paper_bgcolor="#FFFFFF",
         )
 
         st.plotly_chart(fig_cube, use_container_width=True)
@@ -2123,7 +2381,7 @@ elif selected_page == "03 — Data Profiling & ETL Pipeline":
                 x="Day",
                 y="Orders",
                 color="Orders",
-                color_continuous_scale=["#C7D2FE", "#4F46E5"]
+                color_continuous_scale=CONTINUOUS_PALETTE
             )
             st.plotly_chart(apply_chart_theme(fig_day, height=270, show_legend=False), use_container_width=True)
 
@@ -2313,7 +2571,7 @@ elif selected_page == "05 — Decision Tree Classification":
                 x=["Pred: At-Risk", "Pred: Delivered"],
                 y=["Actual: At-Risk", "Actual: Delivered"],
                 text_auto=True,
-                color_continuous_scale=["#FFFFFF", "#EEF2FF", "#4F46E5"],
+                color_continuous_scale=["#EEF2FF", "#818CF8", "#312E81"],
             )
             st.plotly_chart(apply_chart_theme(fig_cm, height=280), use_container_width=True)
 
@@ -2328,7 +2586,7 @@ elif selected_page == "05 — Decision Tree Classification":
                 y="Feature",
                 orientation="h",
                 color="Importance",
-                color_continuous_scale=["#C7D2FE", "#4F46E5"]
+                color_continuous_scale=CONTINUOUS_PALETTE
             )
             st.plotly_chart(apply_chart_theme(fig_fi, height=280, show_legend=False), use_container_width=True)
 
@@ -2648,7 +2906,7 @@ elif selected_page == "09 — Apriori Association Rule Mining":
                     y="confidence",
                     size="lift",
                     color="lift",
-                    color_continuous_scale=["#C7D2FE", "#4F46E5", "#312E81"],
+                    color_continuous_scale=["#818CF8", "#4F46E5", "#1E1B4B"],
                     hover_data=["Rule_Label"]
                 )
                 st.plotly_chart(apply_chart_theme(fig_apr, height=280), use_container_width=True)
@@ -2663,7 +2921,7 @@ elif selected_page == "09 — Apriori Association Rule Mining":
                     y="Rule_Label",
                     orientation="h",
                     color="lift",
-                    color_continuous_scale=["#C7D2FE", "#4F46E5"]
+                    color_continuous_scale=CONTINUOUS_PALETTE
                 )
                 st.plotly_chart(apply_chart_theme(fig_top, height=280, show_legend=False), use_container_width=True)
 
