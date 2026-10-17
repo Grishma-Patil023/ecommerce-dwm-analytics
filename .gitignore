@@ -2,3 +2,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 .streamlit/
+.env
+*.env
+!.env.example
+*.db
+*.sqlite
+ecommerce_warehouse.db
+app_backup_original.py

@@ -1,0 +1,6 @@
+{
+  "min_support": 0.03,
+  "frequent_itemsets_found": 25,
+  "total_rules_extracted": 0,
+  "top_rules": []
+}

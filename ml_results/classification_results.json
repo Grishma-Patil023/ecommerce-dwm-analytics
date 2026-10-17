@@ -1,0 +1,36 @@
+{
+  "dataset_size": 11310,
+  "cancellation_rate": 0.1976127320954907,
+  "decision_tree": {
+    "accuracy": 0.8009,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "random_forest": {
+    "accuracy": 0.8023,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "confusion_matrix": [
+      [
+        2269,
+        0
+      ],
+      [
+        559,
+        0
+      ]
+    ]
+  },
+  "top_features": {
+    "total_amount": 0.2758,
+    "unit_price": 0.1384,
+    "quantity": 0.1262,
+    "is_weekend": 0.0859,
+    "payment_method_PayPal": 0.0772,
+    "payment_method_Credit Card": 0.0746,
+    "age_group_Teenagers": 0.0658,
+    "age_group_Senior": 0.0625
+  }
+}

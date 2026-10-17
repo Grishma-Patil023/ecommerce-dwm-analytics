@@ -1,0 +1,13 @@
+{
+  "ridge_regression": {
+    "r2_score": 0.8479,
+    "mae": 245.71,
+    "rmse": 402.6
+  },
+  "random_forest": {
+    "r2_score": 1.0,
+    "mae": 1.52,
+    "rmse": 2.77
+  },
+  "model_file": "revenue_model.joblib"
+}

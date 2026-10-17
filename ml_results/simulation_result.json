@@ -1,0 +1,28 @@
+{
+  "scenario_inputs": {
+    "category": "Toys",
+    "age_group": "Teenagers",
+    "country": "India",
+    "discount_pct": 15.0,
+    "quantity": 3,
+    "payment_method": "Cash on Delivery",
+    "customer_segment": "Loyal Frequent Shoppers"
+  },
+  "financial_projections": {
+    "gross_order_value": 177.0,
+    "discount_applied": 26.55,
+    "net_revenue": 150.45,
+    "net_profit": 35.4,
+    "net_margin_percentage": 23.5
+  },
+  "behavioral_probabilities": {
+    "conversion_probability": 0.775,
+    "fulfillment_probability": 0.62,
+    "cancellation_risk": 0.38
+  },
+  "cross_sell_recommendations": [
+    "Books",
+    "Apparel"
+  ],
+  "recommendation": "[ELEVATED RISK] Cash on Delivery exhibits significantly higher return/cancellation risk."
+}

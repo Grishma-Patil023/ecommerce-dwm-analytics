@@ -1,0 +1,37 @@
+{
+  "total_customers": 4327,
+  "n_clusters": 4,
+  "silhouette_score": 0.3531,
+  "cluster_distribution": {
+    "Recent / Promising": 2013,
+    "Loyal Frequent Shoppers": 882,
+    "At-Risk / Inactive": 876,
+    "Champions (High Value)": 556
+  },
+  "cluster_averages": {
+    "0": {
+      "recency_proxy": 3767.32,
+      "frequency": 4.12,
+      "monetary": 2724.99,
+      "aov": 677.32
+    },
+    "1": {
+      "recency_proxy": 22246.19,
+      "frequency": 1.44,
+      "monetary": 706.33,
+      "aov": 501.11
+    },
+    "2": {
+      "recency_proxy": 8079.74,
+      "frequency": 2.34,
+      "monetary": 4976.78,
+      "aov": 2372.79
+    },
+    "3": {
+      "recency_proxy": 5665.12,
+      "frequency": 1.89,
+      "monetary": 825.38,
+      "aov": 446.16
+    }
+  }
+}

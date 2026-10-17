@@ -634,6 +634,7 @@ NAVIGATION_OPTIONS = [
     "07 — K-Means Customer Clustering",
     "08 — Hierarchical Clustering",
     "09 — Apriori Association Rule Mining",
+    "10 — Campaign & Pricing Simulator",
     # Group 4: Documentation
     "About Project & Architecture",
 ]
@@ -2964,6 +2965,62 @@ elif selected_page == "09 — Apriori Association Rule Mining":
 # =============================================================================
 # View: About Project & Architecture
 # =============================================================================
+elif "Campaign & Pricing Simulator" in selected_page:
+    render_module_header(
+        tag="DECISION SUPPORT ENGINE",
+        title="E-Commerce Campaign & Pricing Scenario Simulator",
+        subtitle="Simulate customer conversion propensity, order revenue, and profit margins under different pricing, discount, and fulfillment strategies.",
+        theme_tag="Scenario What-If Analysis"
+    )
+
+    col_in, col_out = st.columns([1, 1.2], gap="large")
+    with col_in:
+        with st.container(border=True):
+            st.markdown("#### ⚙️ Scenario Parameters")
+            sim_category = st.selectbox("Target Product Category", ["Electronics", "Apparel", "Home & Kitchen", "Beauty", "Toys", "Sports", "Books"])
+            sim_segment = st.selectbox("Customer Behavioral Segment", ["Champions (High Value)", "Loyal Frequent Shoppers", "Recent / Promising", "At-Risk / Inactive"])
+            sim_country = st.selectbox("Target Geographic Market", ["USA", "UK", "Germany", "France", "Canada", "Australia", "India", "China", "Brazil", "Japan"])
+            sim_age = st.selectbox("Target Age Cohort", ["Adults", "Teenagers", "Senior"])
+            sim_discount = st.slider("Proposed Promotional Discount (%)", min_value=0.0, max_value=50.0, value=15.0, step=1.0)
+            sim_quantity = st.number_input("Projected Order Units (Quantity)", min_value=1, max_value=10, value=2)
+            sim_payment = st.selectbox("Primary Payment Channel", ["Credit Card", "PayPal", "Cash on Delivery"])
+            run_btn = st.button("🚀 Re-calculate Scenario Simulation", type="primary", use_container_width=True)
+
+    with col_out:
+        with st.container(border=True):
+            st.markdown("#### 📊 Simulation Projections & Decision Output")
+            from simulator import run_simulation
+            sim_result = run_simulation(
+                category=sim_category,
+                customer_segment=sim_segment,
+                country=sim_country,
+                age_group=sim_age,
+                discount_pct=float(sim_discount),
+                quantity=int(sim_quantity),
+                payment_method=sim_payment
+            )
+            fin = sim_result["financial_projections"]
+            beh = sim_result["behavioral_probabilities"]
+            
+            # KPI Cards
+            k1, k2, k3 = st.columns(3)
+            k1.metric("Gross Revenue", f"${fin['gross_order_value']:,.2f}")
+            k2.metric("Net Revenue", f"${fin['net_revenue']:,.2f}", f"-${fin['discount_applied']:,.2f} disc")
+            k3.metric("Net Margin %", f"{fin['net_margin_percentage']:.1f}%", f"${fin['net_profit']:,.2f} profit")
+            
+            st.divider()
+            st.markdown("##### 🎯 Predictive Behavioral Probabilities")
+            p1, p2, p3 = st.columns(3)
+            p1.metric("Conversion Rate", f"{beh['conversion_probability']*100:.1f}%")
+            p2.metric("Fulfillment Rate", f"{beh['fulfillment_probability']*100:.1f}%")
+            p3.metric("Cancellation Risk", f"{beh['cancellation_risk']*100:.1f}%")
+            
+            st.divider()
+            st.markdown("##### 🛒 Recommended Cross-Sell Basket Items")
+            st.write(" • " + "  •  ".join([f"**{x}**" for x in sim_result["cross_sell_recommendations"]]))
+            
+            st.info(f"**Strategic Assessment:** {sim_result['recommendation']}")
+
 elif selected_page == "About Project & Architecture":
     render_module_header(
         tag="DOCUMENTATION",

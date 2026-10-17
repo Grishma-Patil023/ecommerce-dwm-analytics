@@ -1,0 +1,7 @@
+{
+  "total_audited": 11310,
+  "anomalies_detected": 141,
+  "contamination_rate": 0.02,
+  "max_anomalous_spend": 4995.0,
+  "high_quantity_outliers": 141
+}
